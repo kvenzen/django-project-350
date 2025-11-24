@@ -63,9 +63,9 @@ def new_entry(request, topic_id):
             new_entry.save()
             return redirect('learning_logs:topic', topic_id=topic_id)
 
-        # Display a blank or invalid form.
-        context = {'topic': topic, 'form': form}
-        return render(request, 'learning_logs/new_entry.html', context)
+    # Display a blank or invalid form.
+    context = {'topic': topic, 'form': form}
+    return render(request, 'learning_logs/new_entry.html', context)
 
 @login_required
 def edit_entry(request, entry_id):

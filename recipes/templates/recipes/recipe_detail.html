@@ -1,0 +1,14 @@
+{% extends 'learning_logs/base.html' %}
+
+{% block page_header %}
+  <h1>{{ recipe.title }}</h1>
+{% endblock page_header %}
+
+{% block content %}
+  <h3>Ingredients:</h3>
+  <p>{{ recipe.ingredients|linebreaks }}</p>
+
+  <h3>Instructions:</h3>
+  <p>{{ recipe.instructions|linebreaks }}</p>
+{% endblock content %}
+
