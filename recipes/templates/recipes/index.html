@@ -5,21 +5,19 @@
 {% endblock page_header %}
 
 {% block content %}
-  {% for category in recipes|dictsort:"category" %}
-    <h2>{{ category.category }}</h2>
-    <ul class="list-group mb-4">
-      {% for recipe in recipes %}
-        {% if recipe.category == category.category %}
+  {% if grouped_recipes %}
+    {% for category, recipes in grouped_recipes.items %}
+      <h2>{{ category }}</h2>
+      <ul class="list-group mb-4">
+        {% for recipe in recipes %}
           <li class="list-group-item border-0">
-            <a href="{% url 'recipes:recipe_detail' recipe.id %}">
-              {{ recipe.title }}
-            </a>
+            <a href="{% url 'recipes:recipe_detail' recipe.id %}">{{ recipe.title }}</a>
           </li>
-        {% endif %}
-      {% endfor %}
-    </ul>
-  {% empty %}
+        {% endfor %}
+      </ul>
+    {% endfor %}
+  {% else %}
     <p>No recipes added yet.</p>
-  {% endfor %}
+  {% endif %}
 {% endblock content %}
 
