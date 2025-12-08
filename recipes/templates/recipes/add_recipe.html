@@ -1,0 +1,52 @@
+{% extends 'recipes/base.html' %}
+
+{% block content %}
+<h2>Add a Recipe</h2>
+
+<form method="POST">
+    {% csrf_token %}
+
+    <label>Title</label>
+    <input type="text" name="title" required>
+
+    <label>Instructions</label>
+    <textarea name="instructions" required></textarea>
+
+    <label>Category:</label><br>
+    <select name="category">
+	    <option value="">--Select category--</option>
+	    {% for cat in categories %}
+	     <option value="{{ cat.id }}">{{ cat.name }}</option>
+	    {% endfor %}
+    </select><br><br>
+
+    <h3>Ingredients</h3>
+
+    <div id="ingredient-list">
+        <div class="ingredient-row">
+            <input type="text" name="ingredient_name" placeholder="Name">
+            <input type="number" name="ingredient_quantity" placeholder="Qty">
+            <input type="text" name="ingredient_unit" placeholder="Unit">
+        </div>
+    </div>
+
+    <button type="button" onclick="addIngredient()">Add Ingredient</button>
+
+    <button type="submit">Save Recipe</button>
+</form>
+
+<script>
+function addIngredient() {
+    const list = document.getElementById("ingredient-list");
+    const newRow = document.createElement("div");
+    newRow.classList.add("ingredient-row");
+    newRow.innerHTML = `
+        <input type="text" name="ingredient_name" placeholder="Name">
+        <input type="number" name="ingredient_quantity" placeholder="Qty">
+        <input type="text" name="ingredient_unit" placeholder="Unit">
+    `;
+    list.appendChild(newRow);
+}
+</script>
+
+{% endblock content %}

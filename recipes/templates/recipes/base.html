@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}My Recipes{% endblock %}</title>
+</head>
+<body>
+    <h1>My Recipe App</h1>
+    <nav>
+        <a href="{% url 'recipes:index' %}">Home</a> |
+        <a href="{% url 'recipes:add_recipe' %}">Add Recipe</a> |
+        <a href="{% url 'recipes:categories' %}">Categories</a> |
+        <a href="{% url 'recipes:dashboard' %}">Dashboard</a>
+    </nav>
+    <hr>
+    {% block content %}{% endblock %}
+</body>
+</html>
+

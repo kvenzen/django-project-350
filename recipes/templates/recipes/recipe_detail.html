@@ -12,3 +12,9 @@
   <p>{{ recipe.instructions|linebreaks }}</p>
 {% endblock content %}
 
+<a href="{% url 'recipes:delete_recipe' recipe.id %}"
+   style="color: red; font-weight: bold;">
+   Delete Recipe
+</a>
+
+

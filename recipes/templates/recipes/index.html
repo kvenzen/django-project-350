@@ -1,23 +1,18 @@
-{% extends 'learning_logs/base.html' %}
-
-{% block page_header %}
-  <h1>Thanksgiving Recipes</h1>
-{% endblock page_header %}
+{% extends "recipes/base.html" %}
 
 {% block content %}
-  {% if grouped_recipes %}
-    {% for category, recipes in grouped_recipes.items %}
-      <h2>{{ category }}</h2>
-      <ul class="list-group mb-4">
-        {% for recipe in recipes %}
-          <li class="list-group-item border-0">
-            <a href="{% url 'recipes:recipe_detail' recipe.id %}">{{ recipe.title }}</a>
-          </li>
-        {% endfor %}
-      </ul>
+<h2>Recipes</h2>
+
+{% for recipe in recipes %}
+  <h3>{{ recipe.title }} ({{ recipe.category }})</h3>
+  <p>{{ recipe.instructions }}</p>
+  <ul>
+    {% for ing in recipe.ingredients.all %}
+      <li>{{ ing.name }}: {{ ing.quantity }} {{ ing.unit }}</li>
     {% endfor %}
-  {% else %}
-    <p>No recipes added yet.</p>
-  {% endif %}
-{% endblock content %}
+  </ul>
+{% empty %}
+  <p>No recipes yet.</p>
+{% endfor %}
+{% endblock %}
 

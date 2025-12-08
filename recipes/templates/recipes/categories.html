@@ -1,0 +1,18 @@
+{% extends "recipes/base.html" %}
+
+{% block content %}
+<h2>Categories</h2>
+
+<ul>
+  {% for cat in categories %}
+    <li>
+      {{ cat.name }} ({{ cat.num_recipes }} recipe{{ cat.num_recipes|pluralize }})
+    </li>
+  {% empty %}
+    <li>No categories yet.</li>
+  {% endfor %}
+</ul>
+
+<a href="{% url 'recipes:add_recipe' %}">Add a new recipe</a>
+{% endblock %}
+
